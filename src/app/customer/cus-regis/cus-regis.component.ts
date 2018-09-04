@@ -1,19 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CusServiceService } from '../cus-service.service';
+import { AuthService } from '../../service/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-cus-regis',
   templateUrl: './cus-regis.component.html',
   styleUrls: ['./cus-regis.component.css']
 })
+
+@Injectable()
+
 export class CusRegisComponent implements OnInit {
 
-  constructor(private customerRegis: CusServiceService) { }
+  isLoggedIn = false;
+  constructor(private customerRegis: CusServiceService, public afService: AuthService, public router: Router) { }
   submitted: boolean;
   showSuccessMessage: boolean;
   formControls = this.customerRegis.form.controls;
 
   ngOnInit() {
+  }
+
+  login(): boolean {
+    this.afService.loginWithFB();
+    this.router.navigate(['/customer']);
+    return this.isLoggedIn = true;
   }
 
   onSubmit() {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
@@ -16,6 +17,7 @@ import { ShopServiceService } from './shop/shop-service.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
+import { AuthService } from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [CusServiceService, ShopServiceService],
+  providers: [CusServiceService, ShopServiceService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
