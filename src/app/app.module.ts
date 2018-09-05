@@ -12,7 +12,8 @@ import { CusLoginComponent } from './customer/cus-login/cus-login.component';
 import { CusRegisComponent } from './customer/cus-regis/cus-regis.component';
 import { ShopRegisComponent } from './shop/shop-regis/shop-regis.component';
 import { ShopLoginComponent } from './shop/shop-login/shop-login.component';
-import { CusServiceService } from './customer/cus-service.service';
+import { CusRegisService } from './customer/cus-service.service';
+import { CusLoginService } from './customer/cus-service.service';
 import { ShopServiceService } from './shop/shop-service.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +38,11 @@ import { AuthService } from './service/auth.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [CusServiceService, ShopServiceService, AuthService],
+  providers: [
+    CusRegisService,
+    ShopServiceService,
+    AuthService,
+    CusLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
