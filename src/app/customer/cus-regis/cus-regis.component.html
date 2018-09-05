@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-5">
-    <form [formGroup]="this.customerRegis.form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="this.customerRegis.regisForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>Name</label>
         <input formControlName="name" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.name.errors}">
@@ -16,18 +16,6 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Tel Num.</label>
-        <input formControlName="telNum" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.telNum.errors}">
-        <div class="invalid-feedback" *ngIf="submitted && formControls.telNum.errors">
-          <label *ngIf="formControls.telNum.errors.required" > This field is required. </label>
-          <label *ngIf="formControls.telNum.errors.minlength" > At least 8 numbers. </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Birthday</label>
-        <input formControlName="birthDate" class="form-control">
-      </div>
-      <div class="form-group">
         <label>Password</label>
         <input type="password" formControlName="password" class="form-control">
       </div>
@@ -35,10 +23,7 @@
         <input type="submit" class="btn btn-primary" value="Submit" >
       </div>
       <div class="form-group">
-        <button type="buton" class="btn btn-block" (click)="login()">
-          <i class="fa fa-facebook" aria-hidden="true"></i> 
-          Login with Facebook
-        </button>
+        
         <div *ngIf="afService.user | async as user"></div>
          
           <button (click)="afService.logout()">Log out</button>
