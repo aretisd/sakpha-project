@@ -15,6 +15,7 @@ import { ShopLoginComponent } from './shop/shop-login/shop-login.component';
 import { CusRegisService } from './customer/cus-service.service';
 import { CusLoginService } from './customer/cus-service.service';
 import { ShopRegisService } from './shop/shop-service.service';
+import { ShopLoginService } from './shop/shop-service.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
@@ -42,7 +43,8 @@ import { AuthService } from './service/auth.service';
     CusRegisService,
     ShopRegisService,
     AuthService,
-    CusLoginService],
+    CusLoginService,
+    ShopLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -29,5 +29,15 @@ export class ShopRegisService {
       password: shop.password,
       telNum: shop.tel
     });
+    console.log(shop);
   }
+}
+
+@Injectable()
+export class ShopLoginService {
+  constructor() {}
+  loginForm = new FormGroup({
+    email: new FormControl('', Validators.email),
+    password: new FormControl('', Validators.required)
+  });
 }

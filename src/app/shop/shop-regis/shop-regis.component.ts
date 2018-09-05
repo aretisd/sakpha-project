@@ -14,7 +14,7 @@ export class ShopRegisComponent implements OnInit {
 
   constructor(
     public shopRegis: ShopRegisService,
-    public afService: AuthService,
+    public authService: AuthService,
     public router: Router
   ) { }
 

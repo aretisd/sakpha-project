@@ -20,7 +20,7 @@ export class CusRegisComponent implements OnInit {
 
   constructor(
     private customerRegis: CusRegisService,
-    public afService: AuthService,
+    public authService: AuthService,
     public router: Router
   ) { }
 

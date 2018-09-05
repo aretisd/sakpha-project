@@ -14,7 +14,6 @@ import { CusLoginService } from '../cus-service.service';
 export class CusLoginComponent implements OnInit {
 
   constructor(
-    public af: AngularFireAuth,
     private router: Router,
     public afService: AuthService,
     public customerLogin: CusLoginService,
