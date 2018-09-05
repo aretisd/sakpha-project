@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { CustomerComponent } from './customer/customer.component';
 import { CusLoginComponent } from './customer/cus-login/cus-login.component';
