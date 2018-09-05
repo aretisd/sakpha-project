@@ -17,7 +17,8 @@ export class CusLoginComponent implements OnInit {
     public af: AngularFireAuth,
     private router: Router,
     public afService: AuthService,
-    public customerLogin: CusLoginService
+    public customerLogin: CusLoginService,
+    public afAuth: AngularFireAuth,
   ) {}
 
   submitted: boolean;
@@ -25,10 +26,17 @@ export class CusLoginComponent implements OnInit {
   formControl = this.customerLogin.loginForm.controls;
   isLoggedIn = false;
 
-  login(): boolean {
-    this.afService.loginWithFB();
+  loginWithFB() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    this.afAuth.auth.signInWithPopup(provider).then(function(result) {
+      this.customerList.push({
+        password: result.user.uid,
+        name: result.user.displayName,
+        email: result.user.email
+      });
+    });
+    this.isLoggedIn = true;
     this.router.navigate(['/customer']);
-    return this.isLoggedIn = true;
   }
 
   onSubmit() {

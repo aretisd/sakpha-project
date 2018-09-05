@@ -32,12 +32,6 @@ export class CusRegisComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(): boolean {
-    this.afService.loginWithFB();
-    // this.router.navigate(['/customer']);
-    return this.isLoggedIn = true;
-  }
-
   onSubmit() {
     this.submitted = true;
     if (this.customerRegis.regisForm.valid) {
