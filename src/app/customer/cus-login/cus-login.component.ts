@@ -38,19 +38,21 @@ export class CusLoginComponent implements OnInit {
 
   submitted: boolean;
 
-  isLoggedIn = false;
-
   loginWithFB() {
-    const db = this.customerList;
+    const userDB = this.customerList;
     this.authService.signInWithFb().then ( (res) => {
-      this.router.navigate(['/customer']);
-      console.log(res.user.displayName);
-      this.isLoggedIn = true;
-      db.push({
-        password: res.user.uid,
-        name: res.user.displayName,
-        email: res.user.email
-      });
+      if (res.additionalUserInfo.isNewUser) {
+        userDB.push({
+          password: res.user.uid,
+          name: res.user.displayName,
+          email: res.user.email
+        });
+        this.router.navigate(['/customer']);
+        console.log(res.additionalUserInfo.isNewUser);
+      } else {
+        this.router.navigate(['/customer']);
+        console.log(res.user.displayName);
+      }
     })
     .catch( (err) => console.log(err));
   }
