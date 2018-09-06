@@ -44,7 +44,8 @@ import { AuthService } from './service/auth.service';
     ShopRegisService,
     AuthService,
     CusLoginService,
-    ShopLoginService],
+    ShopLoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
