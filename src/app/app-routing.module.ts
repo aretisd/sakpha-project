@@ -9,15 +9,15 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopLoginComponent } from './shop/shop-login/shop-login.component';
 import { ShopRegisComponent } from './shop/shop-regis/shop-regis.component';
 
-// import { AuthGuard } from './service/auth.service';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
     { path: 'shopregis', component: ShopRegisComponent},
     { path: 'shoplogin', component: ShopLoginComponent},
-    { path: 'shop', component: ShopComponent},
+    { path: 'shop', component: ShopComponent, canActivate: [AuthGuard]},
     { path: 'cuslogin', component: CusLoginComponent},
     { path: 'cusregis', component: CusRegisComponent},
-    { path: 'customer', component: CustomerComponent}
+    { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule( {
