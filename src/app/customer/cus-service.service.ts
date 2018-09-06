@@ -11,11 +11,6 @@ export class CusLoginService {
     // this.customerList = this.firebase.list('users');
   }
   // customerList: AngularFireList<any>;
-
-  loginForm = new FormGroup({
-    email: new FormControl('', Validators.email),
-    password: new FormControl('', Validators.required)
-  });
 }
 
 @Injectable()
@@ -38,10 +33,11 @@ export class CusRegisService {
 
   insertCustomer(users) {
     console.log(users);
-    this.customerList.push({
+    const key = this.customerList.push({
       email: users.email,
       name: users.name,
       password: users.password
-    });
+    }).key;
+    console.log(key);
   }
 }

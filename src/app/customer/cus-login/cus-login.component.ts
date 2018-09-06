@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AuthService } from '../../service/auth.service';
 import { CusLoginService } from '../cus-service.service';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {  } from 'querybase';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cus-login',
@@ -13,42 +17,58 @@ import { CusLoginService } from '../cus-service.service';
 })
 export class CusLoginComponent implements OnInit {
 
+  customerList: AngularFireList<any>;
+  private user: Observable<firebase.User>;
+
   constructor(
     private router: Router,
-    public afService: AuthService,
-    public customerLogin: CusLoginService,
-    public afAuth: AngularFireAuth,
-  ) {}
+    private authService: AuthService,
+    private customerLogin: CusLoginService,
+    private afAuth: AngularFireAuth,
+    private db: AngularFireDatabase
+  ) {
+    this.customerList = this.db.list('users');
+    this.user = afAuth.authState;
+  }
+
+  cusLoginForm = new FormGroup({
+    email: new FormControl('', Validators.email),
+    password: new FormControl('', Validators.required)
+  });
 
   submitted: boolean;
-  showMessage: boolean;
-  formControl = this.customerLogin.loginForm.controls;
+
   isLoggedIn = false;
 
   loginWithFB() {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    this.afAuth.auth.signInWithPopup(provider).then(function(result) {
-      this.customerList.push({
-        password: result.user.uid,
-        name: result.user.displayName,
-        email: result.user.email
+    const db = this.customerList;
+    this.authService.signInWithFb().then ( (res) => {
+      this.router.navigate(['/customer']);
+      console.log(res.user.displayName);
+      this.isLoggedIn = true;
+      db.push({
+        password: res.user.uid,
+        name: res.user.displayName,
+        email: res.user.email
       });
-    });
-    this.isLoggedIn = true;
-    this.router.navigate(['/customer']);
+    })
+    .catch( (err) => console.log(err));
   }
 
   onSubmit() {
     this.submitted = true;
-    if (this.customerLogin.loginForm.valid) {
-      // this.customLogin.insertCustomer(this.customLogin.form.value);
-      this.showMessage = true;
-      setTimeout( () => this.showMessage = false, 3000);
-      this.submitted = false;
-      this.customerLogin.loginForm.reset();
+    console.log(this.cusLoginForm.value);
+    if (this.cusLoginForm.valid) {
     }
   }
+
+  /*checkUserPass(): boolean {
+    const email = this.cusLoginForm.value.email;
+    const pass = this.cusLoginForm.value.password;
+
+  }*/
   ngOnInit() {
+
   }
 
 }
