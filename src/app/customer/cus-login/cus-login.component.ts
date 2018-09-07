@@ -17,6 +17,9 @@ import { Observable } from 'rxjs';
 })
 export class CusLoginComponent implements OnInit {
 
+  email: string;
+  password: string;
+
   customerList: AngularFireList<any>;
   private user: Observable<firebase.User>;
 
@@ -55,6 +58,16 @@ export class CusLoginComponent implements OnInit {
       }
     })
     .catch( (err) => console.log(err));
+  }
+
+  login() {
+    console.log(this.cusLoginForm.value);
+    this.authService.signinWithEmail(this.cusLoginForm.value.email, this.cusLoginForm.value.password);
+    this.email = this.password = '';
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   onSubmit() {

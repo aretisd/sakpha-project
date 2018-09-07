@@ -1,34 +1,27 @@
 <div class="row">
   <div class="col-md-5">
-    <form [formGroup]="this.customerRegis.regisForm" (ngSubmit)="onSubmit()">
+    <div [formGroup]="userForm">
+   
       <div class="form-group">
         <label>Name</label>
-        <input formControlName="name" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.name.errors}">
-        <div class="invalid-feedback" *ngIf="submitted && formControls.name.errors">
-          This field is required.
-        </div>
+        <input type="text" formControlName="name" class="form-control">
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input formControlName="email" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.email.errors}">
-        <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
-          Invalid email address.
-        </div>
+        <input type="email" formControlName="email" class="form-control">
       </div>
       <div class="form-group">
         <label>Password</label>
         <input type="password" formControlName="password" class="form-control">
       </div>
       <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!this.customerRegis.regisForm.valid" >
+        <button (click)="signup()" class="btn btn-primary">Submit</button>
       </div>
-      <div class="form-group">
-        
-        
-         
-          <button (click)="afService.logout()">Log out</button>
+      <div class="form-group" *ngIf="authService.authenticated">  
+          <button (click)="logout()">Log out</button>
     </div>
-    </form>
+    
+  </div>
     <div class="alert alert-info" *ngIf="showSuccessMessage" >
       Submitted successfully.
     </div>

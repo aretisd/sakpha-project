@@ -20,24 +20,4 @@ export class CusRegisService {
   constructor(public db: AngularFireDatabase) {
     this.customerList = this.db.list('users');
   }
-
-  regisForm = new FormGroup({
-    email: new FormControl('', Validators.email),
-    name: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
-
-  getCustomers() {
-    return this.customerList.snapshotChanges();
-  }
-
-  insertCustomer(users) {
-    console.log(users);
-    const key = this.customerList.push({
-      email: users.email,
-      name: users.name,
-      password: users.password
-    }).key;
-    console.log(key);
-  }
 }

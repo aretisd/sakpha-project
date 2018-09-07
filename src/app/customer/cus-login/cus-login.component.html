@@ -1,9 +1,7 @@
 <div class="row">
-  {{cusLoginForm.valid}}
   <div class="col-md-5">
-    <form [formGroup]="cusLoginForm" (ngSubmit)="onSubmit()">
+    <div [formGroup]="cusLoginForm">
       <div class="form-group">
-
         <label>Email</label>
         <input formControlName="email" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.email.errors}">
         <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
@@ -16,9 +14,9 @@
       </div>
     
     <div class="form-group">
-      <input type="submit" class="btn btn-success" value="Login" >
+      <button class="btn btn-success" (click)="login()">Log in</button>
     </div>
-  </form> 
+  </div>
   <button type="button" class="btn btn-info" (click)="loginWithFB()">
     <i class="fa fa-facebook" aria-hidden="true"></i> 
     Login with Facebook
