@@ -18,7 +18,7 @@ export class CusRegisComponent implements OnInit {
 
   customerList: AngularFireList<any>;
 
-  userForm: FormGroup;
+  cusRegisForm: FormGroup;
   email: string;
   password: string;
   name: string;
@@ -40,7 +40,7 @@ export class CusRegisComponent implements OnInit {
   }
 
   buildForm(): void {
-    this.userForm = new FormGroup({
+    this.cusRegisForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       name: new FormControl('', Validators.required)
@@ -49,17 +49,17 @@ export class CusRegisComponent implements OnInit {
   }
 
   signup() {
-    if (this.userForm.valid) {
-      this.authService.signupWithEmail(this.userForm.value.email, this.userForm.value.password);
+    if (this.cusRegisForm.valid) {
+      this.authService.signupWithEmail(this.cusRegisForm.value.email, this.cusRegisForm.value.password);
       this.customerList.push({
-        email: this.userForm.value.email,
-        name: this.userForm.value.name,
-        password: this.userForm.value.password
+        email: this.cusRegisForm.value.email,
+        name: this.cusRegisForm.value.name,
+        password: this.cusRegisForm.value.password
       });
       this.showSuccessMessage = true;
       setTimeout( () => this.showSuccessMessage = false, 3000);
       this.submitted = false;
-      this.userForm.reset();
+      this.cusRegisForm.reset();
     }
   }
 

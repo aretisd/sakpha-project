@@ -1,13 +1,11 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AuthService } from '../../service/auth.service';
 import { CusLoginService } from '../cus-service.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {  } from 'querybase';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,8 +13,10 @@ import { Observable } from 'rxjs';
   templateUrl: './cus-login.component.html',
   styleUrls: ['./cus-login.component.css']
 })
+@Injectable()
 export class CusLoginComponent implements OnInit {
 
+  cusLoginForm: FormGroup;
   email: string;
   password: string;
 
@@ -28,18 +28,21 @@ export class CusLoginComponent implements OnInit {
     private authService: AuthService,
     private customerLogin: CusLoginService,
     private afAuth: AngularFireAuth,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private fb: FormBuilder
   ) {
     this.customerList = this.db.list('users');
     this.user = afAuth.authState;
+    this.buildForm();
   }
-
-  cusLoginForm = new FormGroup({
-    email: new FormControl('', Validators.email),
-    password: new FormControl('', Validators.required)
-  });
-
   submitted: boolean;
+
+  buildForm(): void {
+    this.cusLoginForm = new FormGroup({
+      email: new FormControl('', Validators.email),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
+  }
 
   loginWithFB() {
     const userDB = this.customerList;
@@ -61,8 +64,10 @@ export class CusLoginComponent implements OnInit {
   }
 
   login() {
+    this.submitted = true;
     console.log(this.cusLoginForm.value);
     this.authService.signinWithEmail(this.cusLoginForm.value.email, this.cusLoginForm.value.password);
+    this.router.navigate(['/customer']);
     this.email = this.password = '';
   }
 
@@ -70,20 +75,7 @@ export class CusLoginComponent implements OnInit {
     this.authService.logout();
   }
 
-  onSubmit() {
-    this.submitted = true;
-    console.log(this.cusLoginForm.value);
-    if (this.cusLoginForm.valid) {
-    }
-  }
-
-  /*checkUserPass(): boolean {
-    const email = this.cusLoginForm.value.email;
-    const pass = this.cusLoginForm.value.password;
-
-  }*/
   ngOnInit() {
-
+    console.log(this.cusLoginForm.valid);
   }
-
 }
