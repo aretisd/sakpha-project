@@ -20,6 +20,11 @@ import { ShopLoginService } from './shop/shop-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { AuthService } from './service/auth.service';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,10 @@ import { AuthService } from './service/auth.service';
     CusLoginComponent,
     CusRegisComponent,
     ShopRegisComponent,
-    ShopLoginComponent
+    ShopLoginComponent,
+    HeaderComponent,
+    SidenavListComponent,
+    NavtabsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,9 @@ import { AuthService } from './service/auth.service';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CusRegisService,

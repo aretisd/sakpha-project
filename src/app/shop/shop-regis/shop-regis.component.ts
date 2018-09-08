@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 import { ShopRegisService } from '../shop-service.service';
 import { AuthService } from '../../service/auth.service';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-shop-regis',
@@ -12,29 +13,56 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class ShopRegisComponent implements OnInit {
 
+  shopList: AngularFireList<any>;
+  shopRegisForm: FormGroup;
+  email: String;
+  password: String;
+  name: String;
+  tel: number;
+
   constructor(
     public shopRegis: ShopRegisService,
     public authService: AuthService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private db: AngularFireDatabase
+  ) {
+    this.shopList = this.db.list('Shop');
+   }
 
-  isLoggedIn = false;
   submitted: boolean;
   showSuccessMessage: boolean;
-  formControls = this.shopRegis.regisForm.controls;
 
-  onSubmit() {
-    this.submitted = true;
-    if (this.shopRegis.regisForm.valid && this.shopRegis.regisForm.get('$key').value == null) {
-      this.shopRegis.insertShop(this.shopRegis.regisForm.value);
+  ngOnInit() {
+    this.buildForm();
+  }
+
+  buildForm(): void {
+    this.shopRegisForm = new FormGroup({
+      email: new FormControl('', Validators.email),
+      password: new FormControl('', Validators.minLength(6)),
+      name: new FormControl('', Validators.required),
+      tel: new FormControl('', Validators.minLength(8))
+    });
+  }
+
+  signup() {
+    if (this.shopRegisForm.valid) {
+      this.authService.signupWithEmail(this.shopRegisForm.value.email, this.shopRegisForm.value.password);
+      this.shopList.push({
+        email: this.shopRegisForm.value.email,
+        name: this.shopRegisForm.value.name,
+        password: this.shopRegisForm.value.password,
+        tel: this.shopRegisForm.value.tel
+      });
       this.showSuccessMessage = true;
       setTimeout( () => this.showSuccessMessage = false, 3000);
       this.submitted = false;
-      this.shopRegis.regisForm.reset();
+      this.shopRegisForm.reset();
     }
   }
 
-  ngOnInit() {
+  logout() {
+    this.authService.logout();
   }
 
 }

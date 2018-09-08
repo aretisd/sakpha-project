@@ -1,47 +1,43 @@
 <div class="row">
-    <div class="col-md-5">
-      <form [formGroup]="this.shopRegis.regisForm" (ngSubmit)="onSubmit()">
-        <input type="hidden" formControlName="$key">
-        <div class="form-group">
-          <label>Name</label>
-          <input formControlName="name" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.name.errors}">
-          <div class="invalid-feedback" *ngIf="submitted && formControls.name.errors">
-            This field is required.
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input formControlName="email" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.email.errors}">
-          <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
-            Invalid email address.
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" formControlName="password" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Telephone</label>
-            <input formControlName="tel" type="number" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.tel.errors}">
-            <div class="invalid-feedback" *ngIf="submitted && formControls.tel.errors">
-              <label *ngIf="formControls.tel.errors.required"> This field is required.</label>
-              <label *ngIf="formControls.tel.errors.minlength">At least 8 numbers.</label>
-            </div>
-          </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-primary" value="Submit" >
-        </div>
-        <div class="form-group">
-          
-          <div *ngIf="afService.user | async as user"></div>
-           
-            <button (click)="afService.logout()">Log out</button>
+  <div class="col-md-5">
+    <div [formGroup]="shopRegisForm">
+   
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" formControlName="name" class="form-control" [ngClass]="{'is-invalid': this.shopRegisForm.controls.name.errors && submitted}">
+        <div class="invalid-feedback" *ngIf="this.shopRegisForm.controls.name.errors && submitted">This field is required.</div>
       </div>
-      </form>
-      <div class="alert alert-info" *ngIf="showSuccessMessage" >
-        Submitted successfully.
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" class="form-control" [ngClass]="{'is-invalid': this.shopRegisForm.controls.email.errors && submitted}">
+        <div class="invalid-feedback" *ngIf="this.shopRegisForm.controls.email.errors && submitted">Invalid email address.</div>
       </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': this.shopRegisForm.controls.password.errors && submitted}">
+        <div class="invalid-feedback" *ngIf="this.shopRegisForm.controls.password.errors && submitted" >
+          Password must be at least 6 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Mobile</label>
+        <input type="number" formControlName="tel" class="form-control" [ngClass]="{'is-invalid': this.shopRegisForm.controls.tel.errors && submitted}">
+        <div class="invalid-feedback" *ngIf="this.shopRegisForm.controls.password.errors && submitted" >
+          Mobile must be at least 8 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="signup()" class="btn btn-primary">Submit</button>
+      </div>
+      <div class="form-group" *ngIf="authService.authenticated">  
+          <button (click)="logout()">Log out</button>
     </div>
-    <div class="col-md-7">
+    
+  </div>
+    <div class="alert alert-info" *ngIf="showSuccessMessage" >
+      Submitted successfully.
     </div>
   </div>
+  <div class="col-md-7">
+  </div>
+</div>
