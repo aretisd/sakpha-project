@@ -1,4 +1,13 @@
-<div class="container">
-    <app-shop-regis></app-shop-regis>
-    <app-cus-login></app-cus-login>
-</div>
+<mat-sidenav-container >
+
+    <mat-sidenav #sidenav>
+        <app-sidenav-list (closeSideNavigation)="sidenav.close()"></app-sidenav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <app-header (SideNaviatationToggle)="sidenav.toggle()"></app-header>
+        <app-navtabs></app-navtabs>
+    </mat-sidenav-content>
+
+    <router-outlet></router-outlet>
+</mat-sidenav-container>
