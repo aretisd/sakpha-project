@@ -41,7 +41,7 @@ export class CusRegisComponent implements OnInit {
 
   buildForm(): void {
     this.cusRegisForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', Validators.email),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       name: new FormControl('', Validators.required)
     });

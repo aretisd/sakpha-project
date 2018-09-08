@@ -40,7 +40,7 @@ export class CusLoginComponent implements OnInit {
   buildForm(): void {
     this.cusLoginForm = new FormGroup({
       email: new FormControl('', Validators.email),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', Validators.minLength(6)),
     });
   }
 
