@@ -64,11 +64,13 @@ export class CusLoginComponent implements OnInit {
   }
 
   login() {
-    this.submitted = true;
-    console.log(this.cusLoginForm.value);
-    this.authService.signinWithEmail(this.cusLoginForm.value.email, this.cusLoginForm.value.password);
-    this.router.navigate(['/customer']);
-    this.email = this.password = '';
+    if (this.cusLoginForm.valid) {
+      this.router.navigate(['/customer']);
+      this.submitted = true;
+      console.log(this.cusLoginForm.value);
+      this.authService.signinWithEmail(this.cusLoginForm.value.email, this.cusLoginForm.value.password);
+      this.email = this.password = '';
+    }
   }
 
   logout() {

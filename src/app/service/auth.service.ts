@@ -73,7 +73,6 @@ export class AuthService {
     .then( (user) => {
       console.log('Sign up with email success', user);
       this.authState = user;
-      this.router.navigate(['/']);
     })
     .catch( err => {
       console.log('Sign up with email fail', err.message);
@@ -85,7 +84,6 @@ export class AuthService {
     .signInWithEmailAndPassword(email, password)
     .then( (user) => {
       this.authState = user;
-      this.router.navigate(['/']);
       console.log('Sign in with email success');
     })
     .catch( err => {

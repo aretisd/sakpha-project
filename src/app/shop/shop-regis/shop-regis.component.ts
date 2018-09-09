@@ -47,6 +47,7 @@ export class ShopRegisComponent implements OnInit {
 
   signup() {
     if (this.shopRegisForm.valid) {
+      this.router.navigate(['/shop']);
       this.authService.signupWithEmail(this.shopRegisForm.value.email, this.shopRegisForm.value.password);
       this.shopList.push({
         email: this.shopRegisForm.value.email,

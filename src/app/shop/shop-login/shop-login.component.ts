@@ -37,11 +37,13 @@ export class ShopLoginComponent implements OnInit {
   }
 
   login() {
-    this.submitted = true;
-    console.log(this.shopLoginForm.value);
-    this.authService.signinWithEmail(this.shopLoginForm.value.email, this.shopLoginForm.value.password);
-    this.router.navigate(['/customer']);
-    this.email = this.password = '';
+    if (this.shopLoginForm.valid) {
+      this.router.navigate(['/shop']);
+      this.submitted = true;
+      console.log(this.shopLoginForm.value);
+      this.authService.signinWithEmail(this.shopLoginForm.value.email, this.shopLoginForm.value.password);
+      this.email = this.password = '';
+    }
   }
 
   logout() {

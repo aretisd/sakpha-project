@@ -50,6 +50,7 @@ export class CusRegisComponent implements OnInit {
   signup() {
     console.log(this.cusRegisForm.controls.email.errors);
     if (this.cusRegisForm.valid) {
+      this.router.navigate(['/customer']);
       this.authService.signupWithEmail(this.cusRegisForm.value.email, this.cusRegisForm.value.password);
       this.customerList.push({
         email: this.cusRegisForm.value.email,
