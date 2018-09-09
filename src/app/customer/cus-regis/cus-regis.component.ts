@@ -17,7 +17,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 export class CusRegisComponent implements OnInit {
 
   customerList: AngularFireList<any>;
-
+  hide = true;
   cusRegisForm: FormGroup;
   email: string;
   password: string;
@@ -41,14 +41,14 @@ export class CusRegisComponent implements OnInit {
 
   buildForm(): void {
     this.cusRegisForm = new FormGroup({
-      email: new FormControl('', Validators.email),
+      email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       name: new FormControl('', Validators.required)
     });
-
   }
 
   signup() {
+    console.log(this.cusRegisForm.controls.email.errors);
     if (this.cusRegisForm.valid) {
       this.authService.signupWithEmail(this.cusRegisForm.value.email, this.cusRegisForm.value.password);
       this.customerList.push({

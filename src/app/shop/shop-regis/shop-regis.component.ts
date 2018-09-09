@@ -38,10 +38,10 @@ export class ShopRegisComponent implements OnInit {
 
   buildForm(): void {
     this.shopRegisForm = new FormGroup({
-      email: new FormControl('', Validators.email),
-      password: new FormControl('', Validators.minLength(6)),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.minLength(6), Validators.required]),
       name: new FormControl('', Validators.required),
-      tel: new FormControl('', Validators.minLength(8))
+      tel: new FormControl('', [Validators.minLength(8), Validators.required])
     });
   }
 
