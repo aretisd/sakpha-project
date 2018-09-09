@@ -1,0 +1,7 @@
+1. Login and Registration for shop and customer.
+2. Shop must be able to map RFID tag with customer email.
+3. Shop must be able to add order's detail.
+4. Shop must be able to update order's process.
+5. Shop must be able to notify customer after process is finish.
+6. Shop must be able to see all customer's process.
+7. Customer must be able to see their order's process.
