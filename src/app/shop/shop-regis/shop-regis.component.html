@@ -1,15 +1,15 @@
-<div class="row">
-  <div class="col-md-5">
+<div class="column">
+  <div class="formContainer">
     <div [formGroup]="shopRegisForm">
    
-      <mat-form-field>
+      <mat-form-field class="container">
         <input matInput placeholder="Name" formControlName="name" class="form-control" required>
         <mat-error *ngIf="this.shopRegisForm.controls.name.hasError('required')">
           This field is required.
         </mat-error>
       </mat-form-field>
         
-      <mat-form-field>
+      <mat-form-field class="container">
           <input matInput placeholder="Email" formControlName="email" class="form-control" required>
           <mat-error *ngIf="this.shopRegisForm.controls.email.hasError('email')">
             Please enter a valid email address.
@@ -19,7 +19,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="container">
             <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control" required>
             <mat-icon matSuffix (click)="hide = !hide">{{ hide? 'visibility' : 'visibility_off' }}</mat-icon>
             <mat-error *ngIf="!this.shopRegisForm.controls.password.hasError('required')">
@@ -30,7 +30,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="container">
           <input matInput placeholder="Mobile" type="tel" formControlName="tel" class="form-control" required>
           <mat-error *ngIf="this.shopRegisForm.controls.tel.hasError('required')">
             Mobile is <strong>required</strong>.
