@@ -2,7 +2,7 @@
   <div class="formContainer">
     <div [formGroup]="cusRegisForm">
    
-      <mat-form-field>
+      <mat-form-field class="container">
           <input matInput placeholder="Name" formControlName="name" class="form-control" required>
           <mat-error *ngIf="this.cusRegisForm.controls.name.hasError('required')">
             This field is required.
