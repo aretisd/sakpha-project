@@ -25,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
+import { AddorderComponent } from './shop/addorder/addorder.component';
+import { UpdateComponent } from './shop/update/update.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
     ShopLoginComponent,
     HeaderComponent,
     SidenavListComponent,
-    NavtabsComponent
+    NavtabsComponent,
+    AddorderComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
