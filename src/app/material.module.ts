@@ -9,7 +9,9 @@ import {
     MatTabsModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule,
+    MatSelectModule
  } from '@angular/material';
 
 
@@ -24,7 +26,9 @@ import {
         MatTabsModule,
         MatFormFieldModule,
         MatCardModule,
-        MatInputModule
+        MatInputModule,
+        MatStepperModule,
+        MatSelectModule
     ],
     exports: [
         MatBadgeModule,
@@ -36,7 +40,9 @@ import {
         MatTabsModule,
         MatFormFieldModule,
         MatCardModule,
-        MatInputModule
+        MatInputModule,
+        MatStepperModule,
+        MatSelectModule
     ]
 })
 

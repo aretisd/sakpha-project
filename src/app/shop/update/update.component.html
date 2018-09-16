@@ -1,3 +1,24 @@
-<p>
-  update works!
-</p>
+<div class="example-container">
+  <h3>Update Order Process</h3>
+
+  <form [formGroup]="updateProcess">
+    <div class="row">
+      <mat-form-field>
+        <input matInput placeholder="RFID Number" formControlName="rfidCtrl" required>
+        </mat-form-field>
+    </div>
+      
+    <div class="row">
+      <mat-form-field>
+        <mat-select placeholder="Select" formControlName="optCtrl" required>
+          <mat-option value="inProcess">In Process</mat-option>
+          <mat-option value="ready">Ready To Pick</mat-option>
+          <mat-option value="complete">Complete</mat-option>
+        </mat-select>
+      </mat-form-field>  
+    </div>
+        
+  </form>
+  <button mat-raised-button color="primary">Update</button>
+  
+</div>

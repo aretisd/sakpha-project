@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-update',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateComponent implements OnInit {
 
-  constructor() { }
+  updateProcess: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.updateProcess = this.fb.group({
+      rfidCtrl: ['', Validators.required],
+      optCtrl: ['', Validators.required]
+    });
   }
 
 }
