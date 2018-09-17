@@ -28,6 +28,7 @@ import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
 import { AddorderComponent } from './shop/addorder/addorder.component';
 import { UpdateComponent } from './shop/update/update.component';
 import { SettingComponent } from './shop/setting/setting.component';
+import { BuypackageComponent } from './shop/buypackage/buypackage.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SettingComponent } from './shop/setting/setting.component';
     NavtabsComponent,
     AddorderComponent,
     UpdateComponent,
-    SettingComponent
+    SettingComponent,
+    BuypackageComponent
   ],
   imports: [
     BrowserModule,
