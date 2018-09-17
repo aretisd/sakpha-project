@@ -17,5 +17,4 @@ export class UpdateComponent implements OnInit {
       optCtrl: ['', Validators.required]
     });
   }
-
 }
