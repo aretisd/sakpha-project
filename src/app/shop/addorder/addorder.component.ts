@@ -11,15 +11,18 @@ export class AddorderComponent implements OnInit {
   isLinear = false;
   firstStep: FormGroup;
   secondStep: FormGroup;
+  thirdStep: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.firstStep = this.fb.group({
-      firstCtrl: ['', Validators.required],
-      rfidCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.required]
     });
     this.secondStep = this.fb.group({
+      rfidCtrl: ['', Validators.required]
+    });
+    this.thirdStep = this.fb.group({
       orderDetail: ['0']
     });
   }

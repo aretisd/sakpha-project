@@ -2,17 +2,12 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstStep">
     <form [formGroup]="firstStep" >
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>Fill out customer mobile</ng-template>
       <div class="row">
         <mat-form-field>
           <input matInput placeholder="Customer Mobile Number" formControlName="firstCtrl" required type="tel">
         </mat-form-field>
       </div>
-      <div class="row">
-        <mat-form-field>
-          <input matInput placeholder="RFID Tag Number" formControlName="rfidCtrl" required >
-      </mat-form-field>
-      </div>    
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
@@ -20,31 +15,46 @@
   </mat-step>
   <mat-step [stepControl]="secondStep">
     <form [formGroup]="secondStep">
-      <ng-template matStepLabel>Fill out order's detail</ng-template>
+    <ng-template matStepLabel>Fill out RFID Tag Number</ng-template>
       <div class="row">
         <mat-form-field>
-          <input matInput placeholder="Cloth" type="number" formControlName="orderDetail">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field>
-          <input matInput placeholder="Pant" type="number" formControlName="orderDetail">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field>
-          <input matInput placeholder="Bedcloth" type="number" formControlName="orderDetail">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field>
-          <input matInput placeholder="Blanket" type="number" formControlName="orderDetail">
+          <input matInput placeholder="RFID Tag Number" formControlName="rfidCtrl" required >
         </mat-form-field>
       </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdStep">
+    <form [formGroup]="thirdStep">
+        <ng-template matStepLabel>Fill out order's detail</ng-template>
+      
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Cloth" type="number" formControlName="orderDetail">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Pant" type="number" formControlName="orderDetail">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Bedcloth" type="number" formControlName="orderDetail">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Blanket" type="number" formControlName="orderDetail">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
     </form>
   </mat-step>
   <mat-step>
