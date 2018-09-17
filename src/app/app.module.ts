@@ -27,6 +27,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
 import { AddorderComponent } from './shop/addorder/addorder.component';
 import { UpdateComponent } from './shop/update/update.component';
+import { SettingComponent } from './shop/setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UpdateComponent } from './shop/update/update.component';
     SidenavListComponent,
     NavtabsComponent,
     AddorderComponent,
-    UpdateComponent
+    UpdateComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
