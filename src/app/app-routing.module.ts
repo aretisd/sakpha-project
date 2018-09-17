@@ -10,6 +10,8 @@ import { ShopLoginComponent } from './shop/shop-login/shop-login.component';
 import { ShopRegisComponent } from './shop/shop-regis/shop-regis.component';
 import { AddorderComponent } from './shop/addorder/addorder.component';
 import { UpdateComponent } from './shop/update/update.component';
+import { SettingComponent } from './shop/setting/setting.component';
+import { BuypackageComponent } from './shop/buypackage/buypackage.component';
 
 import { AuthGuard } from './auth.guard';
 
@@ -21,7 +23,9 @@ const routes: Routes = [
     { path: 'cusregis', component: CusRegisComponent},
     { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard]},
     { path: 'addorder', component: AddorderComponent},
-    { path: 'updateorder', component: UpdateComponent}
+    { path: 'updateorder', component: UpdateComponent},
+    { path: 'setting', component: SettingComponent},
+    { path: 'buypackage', component: BuypackageComponent}
 ];
 
 @NgModule( {
