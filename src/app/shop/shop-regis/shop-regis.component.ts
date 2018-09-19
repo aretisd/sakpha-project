@@ -53,7 +53,11 @@ export class ShopRegisComponent implements OnInit {
         email: this.shopRegisForm.value.email,
         name: this.shopRegisForm.value.name,
         password: this.shopRegisForm.value.password,
-        tel: this.shopRegisForm.value.tel
+        tel: this.shopRegisForm.value.tel,
+        Roles: {
+          customer: true,
+          operator: true
+        }
       });
       this.showSuccessMessage = true;
       setTimeout( () => this.showSuccessMessage = false, 3000);
