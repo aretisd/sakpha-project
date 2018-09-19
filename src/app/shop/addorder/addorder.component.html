@@ -33,22 +33,22 @@
       
         <div class="row">
           <mat-form-field>
-            <input matInput placeholder="Cloth" type="number" formControlName="orderDetail">
+            <input matInput placeholder="Cloth" type="number" formControlName="cloth">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field>
-            <input matInput placeholder="Pant" type="number" formControlName="orderDetail">
+            <input matInput placeholder="Pant" type="number" formControlName="pant">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field>
-            <input matInput placeholder="Bedcloth" type="number" formControlName="orderDetail">
+            <input matInput placeholder="Bedcloth" type="number" formControlName="bedcloth">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field>
-            <input matInput placeholder="Blanket" type="number" formControlName="orderDetail">
+            <input matInput placeholder="Blanket" type="number" formControlName="blanket">
           </mat-form-field>
         </div>
         <div>
@@ -62,7 +62,7 @@
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="mapOrder()">Submit</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
