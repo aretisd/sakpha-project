@@ -22,6 +22,7 @@ export class CusRegisComponent implements OnInit {
   email: string;
   password: string;
   name: string;
+  tel: number;
 
   constructor(
     public authService: AuthService,
@@ -43,19 +44,23 @@ export class CusRegisComponent implements OnInit {
     this.cusRegisForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      name: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required),
+      tel: new FormControl('', Validators.required)
     });
   }
 
   signup() {
     console.log(this.cusRegisForm.controls.email.errors);
     if (this.cusRegisForm.valid) {
-      this.router.navigate(['/customer']);
+      const roles = { customer: true };
+      // this.router.navigate(['/customer']);
       this.authService.signupWithEmail(this.cusRegisForm.value.email, this.cusRegisForm.value.password);
       this.customerList.push({
         email: this.cusRegisForm.value.email,
         name: this.cusRegisForm.value.name,
-        password: this.cusRegisForm.value.password
+        password: this.cusRegisForm.value.password,
+        tel: this.cusRegisForm.value.tel,
+        Roles: roles
       });
       this.showSuccessMessage = true;
       setTimeout( () => this.showSuccessMessage = false, 3000);
