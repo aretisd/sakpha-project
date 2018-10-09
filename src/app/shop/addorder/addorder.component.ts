@@ -55,6 +55,7 @@ export class AddorderComponent implements OnInit {
     this.orderDetail = this.db.list('OrderDetail/');
     this.orderDetail.push({
       rfidNum: tagNum,
+      mobile: mobile,
       status: 'In Process',
       detail: {
         cloth: this.thirdStep.value.cloth,
