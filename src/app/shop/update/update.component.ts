@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
+// import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Component({
   selector: 'app-update',
@@ -11,8 +12,7 @@ import { AuthService } from '../../service/auth.service';
 export class UpdateComponent implements OnInit {
 
   updateProcess: FormGroup;
-  orderProcess: AngularFireList<any>;
-  orderDetail: AngularFireObject<any>;
+
   constructor(
     private fb: FormBuilder,
     private db: AngularFireDatabase,
@@ -27,15 +27,22 @@ export class UpdateComponent implements OnInit {
   }
   update() {
 
-    this.orderProcess = this.db.list('OrderDetail');
-    this.orderProcess.snapshotChanges(['child_added']).subscribe( action => {
-      action.forEach(action1 => {
-        if (action1.payload.val().rfidNum === this.updateProcess.value.rfidCtrl &&
-            action1.payload.val().status !== 'complete') {
-          console.log(action1.key);
-          this.orderProcess.update( action1.key, {status: this.updateProcess.value.optCtrl} );
-        }
-      });
-    });
+    const now = new Date();
+    const day = now.getUTCDate();
+    const month = now.getUTCMonth() + 1;
+    const hour = now.getUTCHours() ;
+    const min = now.getUTCMinutes();
+    const timestamp = hour + ':' + min + '-' + day + '/' + month;
+
+    this.db.list<{status: string}>('OrderDetail', ref =>
+      ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl)).snapshotChanges().subscribe( action => {
+        action.forEach( key => {
+          if (key.payload.val().status !== 'complete') {
+            this.db.list('OrderDetail').update( key.key, {status: this.updateProcess.value.optCtrl, timestamp: timestamp} );
+            console.log('Update status of' + key.key + 'complete');
+          }
+        });
+      }
+      );
   }
 }

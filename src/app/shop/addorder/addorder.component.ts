@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
+import { map, take, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-addorder',
@@ -25,7 +26,7 @@ export class AddorderComponent implements OnInit {
 
   ngOnInit() {
     this.firstStep = this.fb.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', [Validators.required, this.isMobileExist()]]
     });
     this.secondStep = this.fb.group({
       rfidCtrl: ['', Validators.required]
@@ -69,4 +70,27 @@ export class AddorderComponent implements OnInit {
     console.log('Map order success.');
   }
 
+  isMobileExist(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const mobile = control.value;
+      return this.db.list('users', ref => ref.orderByChild('tel').equalTo(mobile)).valueChanges().pipe(
+        debounceTime(500),
+        take(1),
+        map(arr => arr.length ? { MobileAvailable: false }  : null)
+      );
+    };
+  }
 }
+
+// export class CustomValidator {
+//   static mobile(db: AngularFireDatabase) {
+//     return (control: AbstractControl) => {
+//       const mobile = control.value;
+//       return db.list('users', ref => ref.orderByChild('tel').equalTo(mobile)).valueChanges().pipe(
+//         debounceTime(500),
+//         take(1),
+//         map(arr => arr.length ? { MobileAvailable: false } : null),
+//       );
+//     };
+//   }
+// }

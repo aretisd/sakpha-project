@@ -6,6 +6,15 @@
       <div class="row">
         <mat-form-field>
           <input matInput placeholder="Customer Mobile Number" formControlName="firstCtrl" required type="tel">
+          <!-- <div *ngIf="this.firstStep.controls.firstCtrl.hassError('MobileAvailable')" class="notification is-danger">
+            {{ firstCtrl.value }} is already taken
+          </div>
+          <div *ngIf="firstCtrl.valid" class="notification is-success">
+            {{ firstCtrl.value }} is available
+          </div>
+          <div *ngIf="firstCtrl.pending" class="notification is-info">
+            Checking availability of {{ firstCtrl.value }}
+          </div> -->
         </mat-form-field>
       </div>
       <div>
