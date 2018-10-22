@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, FormControl} from '@angular/forms';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
 import { map, take, debounceTime } from 'rxjs/operators';
@@ -71,16 +71,68 @@ export class AddorderComponent implements OnInit {
   }
 
   isMobileExist(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
-      const mobile = control.value;
-      return this.db.list('users', ref => ref.orderByChild('tel').equalTo(mobile)).valueChanges().pipe(
-        debounceTime(500),
-        take(1),
-        map(arr => arr.length ? { MobileAvailable: false }  : null)
-      );
+    return (control: AbstractControl): {[key: string]: any} => {
+      // const temp = this.db.list<{status: string}>('OrderDetail', ref =>
+      // ref.orderByChild('tel').equalTo(control.value)).snapshotChanges();
+      return this.db.list<{tel: string}>('users', ref => ref.orderByChild('tel').equalTo(control.value))
+     .snapshotChanges().subscribe(
+        action => { action.forEach (tel => {
+          if (tel.payload.val().tel !== control.value) {
+            return {'isExist': true};
+          }
+          return null;
+        });
+      });
     };
   }
 }
+
+  // asynMobile(control: FormControl) {
+  //   this.db.list<{tel: string}>('users', ref => ref.orderByChild('tel').equalTo(control.value))
+  //   .snapshotChanges().subscribe(
+  //      action => { action.forEach (tel => {
+  //        if (tel.payload.val().tel === control.value) {
+  //          console.log('Mobile is match.');
+  //          return {
+  //            valid: true
+  //          };
+  //        } else if (tel.payload.val().tel !== control.value) {
+  //          console.log('Mobile is not match.');
+  //          return {
+  //            valid: false
+  //          };
+  //        }
+  //      });
+  //     });
+        // tel.filter(tel1 => {
+        //   if ( tel1.payload.val().tel === control.value) {
+        //     console.log('Mobile is match.');
+        //     return {
+        //       valid: true
+        //     };
+        //   } else {
+        //     console.log('Mobile is not match.');
+        //     return {
+        //       valid: false
+        //     };
+        //   }
+        // });
+    //   })
+    // );
+    // return this.firstStep.value.firstCtrl;
+  // }
+
+  // isMobileExist(): ValidatorFn {
+  //   return (control: AbstractControl): { [key: string]: any } => {
+  //     const mobile = control.value;
+  //     return this.db.list('users', ref => ref.orderByChild('tel').equalTo(mobile)).valueChanges().pipe(
+  //       debounceTime(500),
+  //       take(1),
+  //       map(arr => arr.length ? { isMobileExist: false }  : null)
+  //     );
+  //   };
+  // }
+// }
 
 // export class CustomValidator {
 //   static mobile(db: AngularFireDatabase) {

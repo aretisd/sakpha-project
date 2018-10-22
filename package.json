@@ -28,6 +28,7 @@
     "hammerjs": "^2.0.8",
     "querybase": "^0.6.0",
     "rxjs": "^6.3.1",
+    "sendgrid": "^5.2.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

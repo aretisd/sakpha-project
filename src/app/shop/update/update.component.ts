@@ -35,7 +35,8 @@ export class UpdateComponent implements OnInit {
     const timestamp = hour + ':' + min + '-' + day + '/' + month;
 
     this.db.list<{status: string}>('OrderDetail', ref =>
-      ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl)).snapshotChanges().subscribe( action => {
+      ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl))
+      .snapshotChanges().subscribe( action => {
         action.forEach( key => {
           if (key.payload.val().status !== 'complete') {
             this.db.list('OrderDetail').update( key.key, {status: this.updateProcess.value.optCtrl, timestamp: timestamp} );
