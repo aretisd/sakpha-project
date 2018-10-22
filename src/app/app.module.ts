@@ -29,6 +29,7 @@ import { AddorderComponent } from './shop/addorder/addorder.component';
 import { UpdateComponent } from './shop/update/update.component';
 import { SettingComponent } from './shop/setting/setting.component';
 import { BuypackageComponent } from './shop/buypackage/buypackage.component';
+import { SendEmailComponent } from './send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BuypackageComponent } from './shop/buypackage/buypackage.component';
     AddorderComponent,
     UpdateComponent,
     SettingComponent,
-    BuypackageComponent
+    BuypackageComponent,
+    SendEmailComponent
   ],
   imports: [
     BrowserModule,
