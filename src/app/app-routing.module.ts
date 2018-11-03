@@ -14,6 +14,7 @@ import { SettingComponent } from './shop/setting/setting.component';
 import { BuypackageComponent } from './shop/buypackage/buypackage.component';
 
 import { AuthGuard } from './auth.guard';
+import { SendEmailComponent } from './send-email/send-email.component';
 
 const routes: Routes = [
     { path: 'shopregis', component: ShopRegisComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
     { path: 'addorder', component: AddorderComponent},
     { path: 'updateorder', component: UpdateComponent},
     { path: 'setting', component: SettingComponent},
-    { path: 'buypackage', component: BuypackageComponent}
+    { path: 'buypackage', component: BuypackageComponent},
+    { path: 'sendemail', component: SendEmailComponent }
 ];
 
 @NgModule( {

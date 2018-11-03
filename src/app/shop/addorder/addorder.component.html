@@ -1,72 +1,73 @@
-
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstStep">
-    <form [formGroup]="firstStep" >
-      <ng-template matStepLabel>Fill out customer mobile</ng-template>
-      <div class="row">
-        <mat-form-field>
-          <input matInput placeholder="Customer Mobile Number" formControlName="firstCtrl" required type="tel">
-          <div *ngIf="this.firstStep.value.firstCtrl.invalid && (this.firstStep.value.firstCtrl.dirty || this.firstStep.value.firstCtrl.touched)" class="alert alert-danger">
-            <div *ngIf="this.firstStep.value.firstCtrl.hasError('isExist')">Mobile number does not exist.</div>
-            <div *ngIf="this.firstStep.value.firstCtrl.hasError('required')">Mobile is required.</div>
-        </div>
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondStep">
-    <form [formGroup]="secondStep">
-    <ng-template matStepLabel>Fill out RFID Tag Number</ng-template>
-      <div class="row">
-        <mat-form-field>
-          <input matInput placeholder="RFID Tag Number" formControlName="rfidCtrl" required >
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="thirdStep">
-    <form [formGroup]="thirdStep">
-        <ng-template matStepLabel>Fill out order's detail</ng-template>
-      
-        <div class="row">
-          <mat-form-field>
-            <input matInput placeholder="Cloth" type="number" formControlName="cloth">
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field>
-            <input matInput placeholder="Pant" type="number" formControlName="pant">
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field>
-            <input matInput placeholder="Bedcloth" type="number" formControlName="bedcloth">
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field>
-            <input matInput placeholder="Blanket" type="number" formControlName="blanket">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Totol Cost</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="mapOrder()">Submit</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+<div class="add">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstStep">
+          <form [formGroup]="firstStep" >
+            <ng-template matStepLabel>Fill out customer mobile</ng-template>
+            <div class="row">
+              <mat-form-field>
+                <input matInput placeholder="Customer Mobile Number" formControlName="firstCtrl" required type="tel">
+                <div *ngIf="this.firstStep.value.firstCtrl.invalid && (this.firstStep.value.firstCtrl.dirty || this.firstStep.value.firstCtrl.touched)" class="alert alert-danger">
+                  <div *ngIf="this.firstStep.value.firstCtrl.hasError('isExist')">Mobile number does not exist.</div>
+                  <div *ngIf="this.firstStep.value.firstCtrl.hasError('required')">Mobile is required.</div>
+              </div>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondStep">
+          <form [formGroup]="secondStep">
+          <ng-template matStepLabel>Fill out RFID Tag Number</ng-template>
+            <div class="row">
+              <mat-form-field>
+                <input matInput placeholder="RFID Tag Number" formControlName="rfidCtrl" required >
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdStep">
+          <form [formGroup]="thirdStep">
+              <ng-template matStepLabel>Fill out order's detail</ng-template>
+            
+              <div class="row">
+                <mat-form-field>
+                  <input matInput placeholder="Cloth" type="number" formControlName="cloth">
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-form-field>
+                  <input matInput placeholder="Pant" type="number" formControlName="pant">
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-form-field>
+                  <input matInput placeholder="Bedcloth" type="number" formControlName="bedcloth">
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-form-field>
+                  <input matInput placeholder="Blanket" type="number" formControlName="blanket">
+                </mat-form-field>
+              </div>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Totol Cost</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="mapOrder()">Submit</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+</div>

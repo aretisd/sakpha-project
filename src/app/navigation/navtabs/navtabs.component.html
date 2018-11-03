@@ -1,3 +1,23 @@
-<p>
-  navtabs works!
-</p>
+<div style="padding: 5px;">
+    <nav mat-tab-nav-bar mat-tab-nav-bar >
+        <a mat-tab-link routerLink="/cusregis"
+            routerLinkActive #cusregis ="routerLinkActive"
+            [active]="cusregis.isActive">
+            เพิ่มสมาชิก
+        </a>
+
+        <a mat-tab-link routerLink="/addorder"
+            routerLinkActive #addorder ="routerLinkActive"
+            [active]="addorder.isActive">
+            เพิ่มรายการ
+        </a>
+
+        <a mat-tab-link routerLink="/updateorder"
+            routerLinkActive #updateorder ="routerLinkActive"
+            [active]="updateorder.isActive">
+            แก้ไขสถานะ
+        </a>
+    </nav>
+    
+<router-outlet></router-outlet>
+</div>

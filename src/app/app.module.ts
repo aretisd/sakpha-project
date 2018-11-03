@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
@@ -57,7 +59,7 @@ import { SendEmailComponent } from './send-email/send-email.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, HttpClientModule, HttpModule
   ],
   providers: [
     CusRegisService,

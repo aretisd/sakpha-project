@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatTabsModule } from '@angular/material/tabs';
 import {
     MatBadgeModule,
     MatButtonModule,
@@ -6,7 +7,6 @@ import {
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatTabsModule,
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
