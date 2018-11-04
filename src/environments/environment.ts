@@ -11,7 +11,8 @@ export const environment = {
     projectId: 'sakpha-thailand',
     storageBucket: 'sakpha-thailand.appspot.com',
     messagingSenderId: '809614898074'
-  }
+  },
+  sendgrid_api_key: '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'
 };
 
 /*
