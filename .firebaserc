@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "sakpha-thailand"
+    "default": "sakpha-thailand",
+    "p": "sakpha-thailand"
   }
 }

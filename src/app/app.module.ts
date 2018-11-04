@@ -32,6 +32,7 @@ import { UpdateComponent } from './shop/update/update.component';
 import { SettingComponent } from './shop/setting/setting.component';
 import { BuypackageComponent } from './shop/buypackage/buypackage.component';
 import { SendEmailComponent } from './send-email/send-email.component';
+import { EmailTestComponent } from './email-test/email-test.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SendEmailComponent } from './send-email/send-email.component';
     UpdateComponent,
     SettingComponent,
     BuypackageComponent,
-    SendEmailComponent
+    SendEmailComponent,
+    EmailTestComponent
   ],
   imports: [
     BrowserModule,

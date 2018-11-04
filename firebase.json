@@ -1,5 +1,11 @@
 {
-  "database": {
-    "rules": "database.rules.json"
+  "hosting": {
+    "public": "dist/Sakpha-Project",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
