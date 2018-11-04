@@ -13,6 +13,8 @@ import * as SGMail from '@sendgrid/mail';
 })
 export class SendEmailComponent implements OnInit {
 
+  endpoint = 'https://us-central1-sakpha-thailand.cloudfunctions.net/httpEmail';
+
   constructor(private http: Http) { }
   // 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
 
@@ -32,25 +34,30 @@ export class SendEmailComponent implements OnInit {
     // };
     // SGMail.send(msg);
 
-     const url = `https://us-central1-sakpha-thailand.cloudfunctions.net/httpEmail`;
-     const params: URLSearchParams = new URLSearchParams();
-     const headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-     const options = new RequestOptions( { headers: headers } );
+    //  const url = `https://us-central1-sakpha-thailand.cloudfunctions.net/httpEmail`;
+    //  const params: URLSearchParams = new URLSearchParams();
+    //  const headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    //  const options = new RequestOptions( { headers: headers } );
 
-     params.set('to', 'noby8229@gmail.com');
-     params.set('from', 'sakpha-thailand@gmail.com');
-     params.set('subject', 'test-email');
-     params.set('content', 'Hello World');
+    //  params.set('to', 'noby8229@gmail.com');
+    //  params.set('from', 'sakpha-thailand@gmail.com');
+    //  params.set('subject', 'test-email');
+    //  params.set('content', 'Hello World');
 
-     return this.http.post(url, params, options)
-                     .toPromise()
-                     .then( res => {
-                       console.log(res);
-                     })
-                     .catch(err => {
-                       console.log(err);
-                     });
+    //  return this.http.post(url, params, options)
+    //                  .toPromise()
+    //                  .then( res => {
+    //                    console.log(res);
+    //                  })
+    //                  .catch(err => {
+    //                    console.log(err);
+    //                  });
 
+    const data = {
+      toEmail: 'noby8229@gmail.com',
+      toName: 'Jeff Delaney'
+    };
+    this.http.post(this.endpoint, data).subscribe();
   }
 
 }

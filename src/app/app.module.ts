@@ -5,7 +5,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
@@ -24,6 +23,7 @@ import { environment } from '../environments/environment';
 import { AuthService } from './service/auth.service';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
@@ -59,7 +59,8 @@ import { SendEmailComponent } from './send-email/send-email.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MaterialModule,
-    BrowserAnimationsModule, HttpClientModule, HttpModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
     CusRegisService,
