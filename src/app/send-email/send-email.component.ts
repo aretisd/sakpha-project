@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpModule, Headers, Response, URLSearchParams, RequestOptions, Http } from '@angular/http';
-// import { toPromise } from 'rxjs/add/operator/';
-// import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
  import 'rxjs/add/operator/toPromise';
-// import 'rxjs/Rx';
-import * as SGMail from '@sendgrid/mail';
+
 
 @Component({
   selector: 'app-send-email',
@@ -15,8 +13,8 @@ export class SendEmailComponent implements OnInit {
 
   endpoint = 'https://us-central1-sakpha-thailand.cloudfunctions.net/httpEmail';
 
-  constructor(private http: Http) { }
-  // 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
+  constructor(private http: HttpClient) { }
+
 
 
   ngOnInit() {
@@ -24,7 +22,7 @@ export class SendEmailComponent implements OnInit {
 
   sendEmail() {
 
-    // SGMail.setApiKey('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');
+
     // const msg = {
     //   to: 'test@example.com',
     //   from: 'test@example.com',
