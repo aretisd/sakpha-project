@@ -55,7 +55,7 @@ export class SendEmailComponent implements OnInit {
       toEmail: 'noby8229@gmail.com',
       toName: 'Jeff Delaney'
     };
-    this.http.post(this.endpoint, data).subscribe();
+     this.http.post(this.endpoint, data).subscribe();
   }
 
 }

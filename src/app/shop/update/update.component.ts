@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
 // import { ReplaySubject } from 'rxjs/ReplaySubject';
+// import '../../../../functions/index.js';
+
+// declare var test: any;
 
 @Component({
   selector: 'app-update',
@@ -27,23 +30,25 @@ export class UpdateComponent implements OnInit {
   }
   update() {
 
-    const now = new Date();
-    const day = now.getUTCDate();
-    const month = now.getUTCMonth() + 1;
-    const hour = now.getUTCHours() ;
-    const min = now.getUTCMinutes();
-    const timestamp = hour + ':' + min + '-' + day + '/' + month;
+    // new test();
 
-    this.db.list<{status: string}>('OrderDetail', ref =>
-      ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl))
-      .snapshotChanges().subscribe( action => {
-        action.forEach( key => {
-          if (key.payload.val().status !== 'complete') {
-            this.db.list('OrderDetail').update( key.key, {status: this.updateProcess.value.optCtrl, timestamp: timestamp} );
-            console.log('Update status of' + key.key + 'complete');
-          }
-        });
-      }
-      );
+  //   const now = new Date();
+  //   const day = now.getUTCDate();
+  //   const month = now.getUTCMonth() + 1;
+  //   const hour = now.getUTCHours() ;
+  //   const min = now.getUTCMinutes();
+  //   const timestamp = hour + ':' + min + '-' + day + '/' + month;
+
+  //   this.db.list<{status: string}>('OrderDetail', ref =>
+  //     ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl))
+  //     .snapshotChanges().subscribe( action => {
+  //       action.forEach( key => {
+  //         if (key.payload.val().status !== 'complete') {
+  //           this.db.list('OrderDetail').update( key.key, {status: this.updateProcess.value.optCtrl, timestamp: timestamp} );
+  //           console.log('Update status of' + key.key + 'complete');
+  //         }
+  //       });
+  //     }
+  //     );
   }
 }
