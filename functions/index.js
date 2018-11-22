@@ -1,23 +1,22 @@
-const nodemailer = require('nodemailer');
-const gmailEmail = functions.config().gmail.email;
-const gmailPassword = functions.config().gmail.password;
-const mailTransport = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-        user: gmailEmail,
-        pass: gmailPassword
-        // 1755945
-    }
-});
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const now = new Date();
+const day = now.getUTCDate();
+const month = now.getUTCMonth() + 1;
+const year = now.getUTCFullYear();
+const timestamp = day + '/' + month;
 
-exports.sendWelcomEmail = functions.auth.user().onCreate((user) => {
-    const email = user.email;
-    const displayName = user.displayName;
 
-    return sendWelcomEmail(email, displayName);
-});
+exports.dailyCount = functions.database.ref('OrderDetail/' + year + '/' + month + '/' + day)
+.onCreate( event => {
+    event.val
+})
+// exports.sendWelcomEmail = functions.auth.user().onCreate((user) => {
+//     const email = user.email;
+//     const displayName = user.displayName;
+
+//     return sendWelcomEmail(email, displayName);
+// });
 
 // module.exports = function sendEmail(to, subject, message) {
 //     const mailOptions = {
