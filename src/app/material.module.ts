@@ -13,6 +13,8 @@ import {
     MatStepperModule,
     MatSelectModule
  } from '@angular/material';
+ import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import {
         MatCardModule,
         MatInputModule,
         MatStepperModule,
-        MatSelectModule
+        MatSelectModule,
+        MatAutocompleteModule
     ],
     exports: [
         MatBadgeModule,
@@ -42,7 +45,8 @@ import {
         MatCardModule,
         MatInputModule,
         MatStepperModule,
-        MatSelectModule
+        MatSelectModule,
+        MatAutocompleteModule
     ]
 })
 

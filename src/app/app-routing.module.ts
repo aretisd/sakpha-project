@@ -12,6 +12,7 @@ import { AddorderComponent } from './shop/addorder/addorder.component';
 import { UpdateComponent } from './shop/update/update.component';
 import { SettingComponent } from './shop/setting/setting.component';
 import { BuypackageComponent } from './shop/buypackage/buypackage.component';
+import { AdminComponent } from './admin/admin.component';
 
 import { AuthGuard } from './auth.guard';
 import { SendEmailComponent } from './send-email/send-email.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: 'updateorder', component: UpdateComponent},
     { path: 'setting', component: SettingComponent},
     { path: 'buypackage', component: BuypackageComponent},
-    { path: 'sendemail', component: SendEmailComponent }
+    { path: 'sendemail', component: SendEmailComponent },
+    {path: 'admin', component: AdminComponent }
 ];
 
 @NgModule( {
