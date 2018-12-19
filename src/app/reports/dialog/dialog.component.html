@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Update order's status of {{data.id}}</h1>
+<div mat-dialog-content>
+  <!-- <p>What's your favorite animal?</p> -->
+  <!-- <mat-form-field>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field> -->
+  <mat-form-field>
+    <mat-select placeholder="Process" name="process" [(ngModel)]="selectedProc">
+      <mat-option *ngFor="let process of processes" [value]="process.process">
+        {{process.showProc}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="update(data.id, selectedProc)">Update</button>
+  <button mat-button mat-dialog-close>Clear</button>
+</div>
