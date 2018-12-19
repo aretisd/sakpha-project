@@ -10,3 +10,8 @@
 mat-toolbar {
     height: 96px;
 }
+
+.logo-div {
+    margin-top: 18px;
+    margin-left: 35%;
+}
