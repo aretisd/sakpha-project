@@ -1,0 +1,112 @@
+table {
+  width: 100%;
+}
+
+button {
+  margin: 16px 8px;
+}
+
+.ready {
+  color: #FFF;
+  background-color: #009933;
+  align-content: center;
+}
+
+.inprogress {
+  color: #000000;
+  /*background-color: rgb(207, 223, 121);*/
+  background-color: #ebf8af;
+  align-content: center;
+}
+
+.complete {
+  background-color: #FFF;
+  border: 0px;
+}
+
+.id-column{
+  visibility: hidden;
+}
+
+/* Date column */
+.date-ready{
+  background-color: #24e063;
+}
+
+.date-inprogress{
+  background-color: #ebf8af;
+}
+
+.date-complete{
+  background-color: rgb(255, 255, 255);
+}
+
+
+/*  Status column  */
+.status-ready{
+  background-color: #24e063;
+}
+
+.status-inprogress{
+  background-color: #ebf8af;
+}
+
+.status-complete{
+  background-color: rgb(255, 255, 255);
+}
+
+
+/*  Email column  */
+.email-ready{
+  background-color: #24e063;
+}
+
+.email-inprogress{
+  background-color: #ebf8af;
+}
+
+.email-complete{
+  background-color: rgb(255, 255, 255);
+}
+
+
+/*  mobile column  */
+.mobile-ready{
+  background-color: #24e063;
+}
+
+.mobile-inprogress{
+  background-color: #ebf8af;
+}
+
+.mobile-complete{
+  background-color: rgb(255, 255, 255);
+}
+
+
+/*  Price column  */
+.price-ready{
+  background-color: #24e063;
+}
+
+.price-inprogress{
+  background-color: #ebf8af;
+}
+
+.price-complete{
+  background-color: rgb(255, 255, 255);
+}
+
+
+/*  ID column  */
+.id-ready{
+  background-color: #24e063;
+}
+
+.id-inprogress{
+  background-color: #ebf8af;
+}
+
+.id-complete{
+  background-color: rgb(255, 255, 255);
+}

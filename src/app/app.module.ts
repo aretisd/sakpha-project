@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { AuthService } from './service/auth.service';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DataTableModule} from 'angular-6-datatable';
 
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
@@ -33,6 +34,8 @@ import { SettingComponent } from './shop/setting/setting.component';
 import { BuypackageComponent } from './shop/buypackage/buypackage.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReportsComponent } from './reports/reports.component';
+import { DialogComponent } from './reports/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { AdminComponent } from './admin/admin.component';
     SettingComponent,
     BuypackageComponent,
     SendEmailComponent,
-    AdminComponent
+    AdminComponent,
+    ReportsComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,8 @@ import { AdminComponent } from './admin/admin.component';
     AngularFireAuthModule,
     MaterialModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTableModule
   ],
   providers: [
     CusRegisService,
@@ -71,6 +77,7 @@ import { AdminComponent } from './admin/admin.component';
     CusLoginService,
     ShopLoginService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

@@ -1,24 +1,34 @@
 <div class="update">
-  <h3>Update Order Process</h3>
+  <h3>แก้ไขสถานะ</h3>
 
   <form [formGroup]="updateProcess">
     <div class="row">
       <mat-form-field>
-        <input matInput placeholder="RFID Number" formControlName="rfidCtrl" required>
+        <input matInput placeholder="หมายเลข RFID" formControlName="rfidCtrl" required>
         </mat-form-field>
     </div>
       
     <div class="row">
       <mat-form-field>
-        <mat-select placeholder="Select" formControlName="optCtrl" required>
+        <mat-select placeholder="สถานะ" formControlName="optCtrl" required>
           <mat-option value="inProcess">In Process</mat-option>
           <mat-option value="ready">Ready To Pick</mat-option>
           <mat-option value="complete">Complete</mat-option>
         </mat-select>
       </mat-form-field>  
     </div>
-        
+    <div class="remarkForm">
+      <mat-form-field >
+        <textarea matInput placeholder="หมายเหตุ" formControlName="remark"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="alert alert-info" *ngIf="showSuccessMessage" >
+      แก้ไขรายการสำเร็จ
+    </div>
+    <div class="alert alert-warning" *ngIf="showFailMessage" >
+      แก้ไขรายการไม่สำเร็จ
+    </div>
   </form>
-  <button mat-raised-button color="primary" (click)="update()">Update</button>
+  <button mat-raised-button color="primary" (click)="update()">แก้ไข</button>
   
 </div>

@@ -10,11 +10,13 @@ import {
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    MatStepperModule,
-    MatSelectModule
+    MatStepperModule
  } from '@angular/material';
  import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import { MatTableModule } from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -31,7 +33,10 @@ import {
         MatInputModule,
         MatStepperModule,
         MatSelectModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatTableModule,
+        MatDialogModule,
+        FormsModule
     ],
     exports: [
         MatBadgeModule,
@@ -46,7 +51,10 @@ import {
         MatInputModule,
         MatStepperModule,
         MatSelectModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatTableModule,
+        MatDialogModule,
+        FormsModule
     ]
 })
 

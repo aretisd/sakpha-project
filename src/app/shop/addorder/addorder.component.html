@@ -2,72 +2,105 @@
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstStep">
           <form [formGroup]="firstStep" >
-            <ng-template matStepLabel>Fill out customer mobile</ng-template>
+            <ng-template matStepLabel>กรอกเบอร์โทรศัพท์ลูกค้า</ng-template>
             <div class="row">
               <mat-form-field>
-                <input matInput placeholder="Customer Mobile Number" formControlName="firstCtrl" required type="tel">
-                <div *ngIf="this.firstStep.value.firstCtrl.invalid && (this.firstStep.value.firstCtrl.dirty || this.firstStep.value.firstCtrl.touched)" class="alert alert-danger">
-                  <div *ngIf="this.firstStep.value.firstCtrl.hasError('isExist')">Mobile number does not exist.</div>
-                  <div *ngIf="this.firstStep.value.firstCtrl.hasError('required')">Mobile is required.</div>
-              </div>
+                <input matInput placeholder="เบอร์โทรศัพท์" formControlName="firstCtrl" required type="tel">
+                <mat-error *ngIf="this.firstStep.controls.firstCtrl.hasError('required')">
+                  ต้องการ <strong>เบอร์โทรศัพท์</strong>
+                </mat-error>
               </mat-form-field>
             </div>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext>ต่อไป</button>
             </div>
           </form>
         </mat-step>
         <mat-step [stepControl]="secondStep">
           <form [formGroup]="secondStep">
-          <ng-template matStepLabel>Fill out RFID Tag Number</ng-template>
+          <ng-template matStepLabel>แสกน RFID Tag</ng-template>
             <div class="row">
               <mat-form-field>
                 <input matInput placeholder="RFID Tag Number" formControlName="rfidCtrl" required >
+                <mat-error *ngIf="this.secondStep.controls.rfidCtrl.hasError('required')">
+                  ต้องการ<strong>หมายเลข RFID</strong>
+                </mat-error>
               </mat-form-field>
             </div>
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>กลับ</button>
+              <button mat-button matStepperNext>ต่อไป</button>
             </div>
           </form>
         </mat-step>
         <mat-step [stepControl]="thirdStep">
-          <form [formGroup]="thirdStep">
-              <ng-template matStepLabel>Fill out order's detail</ng-template>
-            
-              <div class="row">
-                <mat-form-field>
-                  <input matInput placeholder="Cloth" type="number" formControlName="cloth">
-                </mat-form-field>
-              </div>
-              <div class="row">
-                <mat-form-field>
-                  <input matInput placeholder="Pant" type="number" formControlName="pant">
-                </mat-form-field>
-              </div>
-              <div class="row">
-                <mat-form-field>
-                  <input matInput placeholder="Bedcloth" type="number" formControlName="bedcloth">
-                </mat-form-field>
-              </div>
-              <div class="row">
-                <mat-form-field>
-                  <input matInput placeholder="Blanket" type="number" formControlName="blanket">
-                </mat-form-field>
-              </div>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-              </div>
+          <form class="example-form" [formGroup]="thirdStep">
+            <ng-template matStepLabel>รายละเอียดรายการ</ng-template>
+            <table>
+              <tr>
+                <th>ชนิดของผ้า</th>
+                <th>จำนวน</th>
+                <th>
+                  <button mat-icon-button color="accent" type="button" title="new item" 
+                  (click)="addNewItem()">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </th>
+              </tr>
+              <tr formArrayName="items" *ngFor="let item of items.controls; let i = index;">
+                <ng-container [formGroupName]="i">
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input #name type="text" placeholder="ชนิดของผ้า" aria-label="Assignee"
+                      matInput formControlName="name" [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                      <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
+                        {{option.name}}
+                      </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="จำนวน" formControlName="count">
+                    </mat-form-field>
+                  </td>
+                  <td class="mat-cell">
+                    <button mat-icon-button color="primary" type="button" title="delete item" (click)="removeItem(i)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+              </tr>
+            </table>
           </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Totol Cost</ng-template>
-          You are now done.
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="mapOrder()">Submit</button>
+          <div class="alert alert-info" *ngIf="showSuccessMessage" >
+            ส่งรายการสำเร็จ
           </div>
+          <div>
+              <button mat-button matStepperPrevious>กลับ</button>
+              <!-- <button mat-button matStepperNext>ต่อไป</button> -->
+              <button mat-button (click)="mapOrder()" >ส่ง</button>
+            </div>
         </mat-step>
-      </mat-horizontal-stepper>
-</div>
+        <!-- <mat-step>
+          <ng-template matStepLabel>สรุปรายการ</ng-template>
+          <table>
+            <th>ยอดรวมสินค้า</th>
+            <tr><td>{{price}}</td></tr>
+          </table>
+          <table mat-table [dataSource]="this.thirdStep.value.items" class="mat-elevation-z8">
+            <ng-container matColumnDef="item">
+              <th mat-header-cell *matHeaderCellDef> Item </th>
+              <td mat-cell *matCellDef="let this.thirdStep.value.items"> {{this.thirdStep.value.items.item}} </td>
+              <td mat-footer-cell *matFooterCellDef> Total </td>
+            </ng-container>
+          </table>
+          <div>
+            <button mat-button matStepperPrevious>กลับ</button>
+            <button mat-button (click)="mapOrder()">ส่ง</button>
+          </div>
+        </mat-step> -->
+    </mat-horizontal-stepper>
+

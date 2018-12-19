@@ -1,3 +1,49 @@
-<p>
-  setting works!
-</p>
+<form class="example-form" [formGroup]="myForm" *ngIf="isReady">
+  <p>แก้ไขราคา</p>
+	<table>
+		<tr>
+			<th>สินค้า</th>
+			<th>ราคา</th>
+			<th>
+         <button mat-icon-button color="accent" type="button" title="new item" (click)="addNewItem()">
+                <mat-icon>add</mat-icon>
+              </button>
+      </th>
+		</tr>
+		<tr formArrayName="items" *ngFor="let item of myForm.get('items').controls; let i = index;">
+			<ng-container [formGroupName]="i">
+				<td>
+					<mat-form-field class="example-full-width">
+						<input type="text" placeholder="สินค้า" aria-label="Assignee" matInput formControlName = "name" [matAutocomplete]="auto">
+						<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+							<mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
+								{{option.name}}
+							</mat-option>
+						</mat-autocomplete>
+					</mat-form-field>
+				</td>
+				<td>
+					<mat-form-field>
+						<input matInput placeholder="ราคา" formControlName="price">
+					</mat-form-field>
+
+				</td>
+         <td class="mat-cell">
+                <button mat-icon-button color="primary" type="button" title="delete item" (click)="removeItem(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+           
+              </td>
+              
+			</ng-container>
+		</tr>
+		<tr>
+			<button mat-raised-button color="primary" type="button" title="submit item" (click)="updateSetting()">submit</button>
+		</tr>
+		
+	</table>
+  
+
+
+</form>
+

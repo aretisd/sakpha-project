@@ -4,44 +4,41 @@
     <div [formGroup]="cusRegisForm">
    
       <mat-form-field class="container">
-          <input matInput placeholder="Name" formControlName="name" class="form-control" required>
+          <input matInput placeholder="ชื่อ" formControlName="name" class="form-control" required>
           <mat-error *ngIf="this.cusRegisForm.controls.name.hasError('required')">
-            Name is <strong>required</strong>.
+            <strong>ต้องการ</strong>ชื่อ
           </mat-error>
       </mat-form-field>
 
       <mat-form-field class="container">
-        <input matInput placeholder="Mobile Number" type="tel" formControlName="tel" class="form-control" required>
+        <input matInput placeholder="เบอร์โทรศัพท์" type="tel" formControlName="tel" class="form-control" required>
         <mat-error *ngIf="this.cusRegisForm.controls.tel.hasError('required')">
-          Mobile Number is <strong>required</strong>.
+          <strong>ต้องการ</strong>เบอร์โทรศัพท์
         </mat-error>
     </mat-form-field>
 
       <mat-form-field class="container">
-        <input matInput placeholder="Email" formControlName="email" class="form-control" required>
+        <input matInput placeholder="อีเมล" formControlName="email" class="form-control" required>
         <mat-error *ngIf="this.cusRegisForm.controls.email.hasError('email')">
-          Please enter a valid email address.
+          กรุณาใส่อีเมลให้ถูกต้อง
         </mat-error>
         <mat-error *ngIf="this.cusRegisForm.controls.email.hasError('required')">
-            Email is <strong>required</strong>.
+            <strong>ต้องการ</strong>อีเมล
           </mat-error>
       </mat-form-field>
         
         <mat-form-field class="container">
-            <input matInput placeholder="Password" type="password" formControlName="password" class="form-control" required>
-            <mat-error *ngIf="!this.cusRegisForm.controls.password.hasError('minLength')">
-              Password must be at least 6 characters.
+            <input matInput placeholder="รหัสผ่าน" type="password" formControlName="password" class="form-control" required>
+            <mat-error *ngIf="!this.cusRegisForm.controls.password.hasError('minLength(6)')">
+              รหัสผ่านต้องมากกว่า 6 ตัวอักษร
             </mat-error>
             <mat-error *ngIf="this.cusRegisForm.controls.password.hasError('required')">
-              Password is <strong>required</strong>.
+              <strong>ต้องการ</strong>รหัสผ่าน
             </mat-error>
         </mat-form-field>
 
-        <button (click)="signup()" mat-raised-button color="primary">Submit</button>
+        <button (click)="signup()" mat-raised-button color="primary">ส่ง</button>
       
-      <div class="form-group" *ngIf="authService.authenticated">  
-          <button (click)="logout()">Log out</button>
-    </div>
     
   </div>
     <div class="alert alert-info" *ngIf="showSuccessMessage" >

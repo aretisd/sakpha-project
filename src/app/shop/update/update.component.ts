@@ -15,6 +15,9 @@ import { AuthService } from '../../service/auth.service';
 export class UpdateComponent implements OnInit {
 
   updateProcess: FormGroup;
+  submitted: boolean;
+  showSuccessMessage: boolean;
+  showFailMessage: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -25,30 +28,46 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.updateProcess = this.fb.group({
       rfidCtrl: ['', Validators.required],
-      optCtrl: ['', Validators.required]
+      optCtrl: ['', Validators.required], // inProcess, ready, complete
+      remark: ['']
     });
   }
   update() {
 
     // new test();
 
-  //   const now = new Date();
-  //   const day = now.getUTCDate();
-  //   const month = now.getUTCMonth() + 1;
-  //   const hour = now.getUTCHours() ;
-  //   const min = now.getUTCMinutes();
-  //   const timestamp = hour + ':' + min + '-' + day + '/' + month;
+    const now = new Date();
+    const day = now.getUTCDate();
+    const month = now.getUTCMonth() + 1;
+    const year = now.getUTCFullYear();
+    const timestamp = day + '/' + month;
 
-  //   this.db.list<{status: string}>('OrderDetail', ref =>
-  //     ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl))
-  //     .snapshotChanges().subscribe( action => {
-  //       action.forEach( key => {
-  //         if (key.payload.val().status !== 'complete') {
-  //           this.db.list('OrderDetail').update( key.key, {status: this.updateProcess.value.optCtrl, timestamp: timestamp} );
-  //           console.log('Update status of' + key.key + 'complete');
-  //         }
-  //       });
-  //     }
-  //     );
+    this.db.list<{status: string}>('OrderDetail/' + year + '/' + month + '/' + day, ref =>
+      ref.orderByChild('rfidNum').equalTo(this.updateProcess.value.rfidCtrl))
+      .snapshotChanges().subscribe( action => {
+        action.forEach( key => {
+          if (key.payload.val().status !== 'complete') {
+            this.db.list('OrderDetail/' + year + '/' + month + '/' + day)
+            .update( key.key, {
+              status: this.updateProcess.value.optCtrl,
+              timestamp: timestamp,
+              remark: this.updateProcess.value.remark
+            }).then( val => {
+              console.log('Update status of' + key.key + 'complete');
+              this.showSuccessMessage = true;
+              setTimeout( () => this.showSuccessMessage = false, 5000);
+              this.submitted = false;
+              this.updateProcess.reset();
+            },
+            err => {
+              this.showFailMessage = true;
+              setTimeout( () => this.showFailMessage = false, 5000);
+
+            }
+            );
+          }
+        });
+      }
+      );
   }
 }

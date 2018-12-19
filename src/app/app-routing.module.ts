@@ -16,6 +16,7 @@ import { AdminComponent } from './admin/admin.component';
 
 import { AuthGuard } from './auth.guard';
 import { SendEmailComponent } from './send-email/send-email.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
     { path: 'shopregis', component: ShopRegisComponent},
@@ -29,7 +30,8 @@ const routes: Routes = [
     { path: 'setting', component: SettingComponent},
     { path: 'buypackage', component: BuypackageComponent},
     { path: 'sendemail', component: SendEmailComponent },
-    {path: 'admin', component: AdminComponent }
+    { path: 'admin', component: AdminComponent },
+    { path: 'reports', component: ReportsComponent }
 ];
 
 @NgModule( {
