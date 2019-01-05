@@ -1,0 +1,42 @@
+{
+    "OrderDetail" : {
+        "year" : {
+           "month" : {
+                "day" : {
+                    "unique ID" : {
+                        "detai" : {
+                            "order's name" : "count"
+                        },
+                        "email" : "user's email",
+                        "mobile" : "user's mobile",
+                        "price" : "total price",
+                        "remark" : "remark",
+                        "rfidNum" : "RFID Tag Number",
+                        "status" : "order's status",
+                        "timestamp" : "timestamp (day/month)"
+                    }
+                }
+            }
+        }
+    },
+    "TagMapOrder" : {
+         "unique ID" : {
+            "email" : "user's email",
+            "mobile": "user's mobile",
+            "rfidNum" : "RFID Tag Number"
+        }
+    },
+    "users" : {
+        "unique ID" : {
+            "Roles" : {
+                "customer" : "true",
+                "opeator" : "true",
+                "admin" : "true"
+            },
+            "email" :"user's email",
+            "name" : "user's name",
+            "password" : "user's password",
+            "teil" : "user's mobile number"
+        }
+    }
+}

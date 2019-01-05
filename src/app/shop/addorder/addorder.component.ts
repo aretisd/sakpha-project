@@ -58,7 +58,6 @@ export class AddorderComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private db: AngularFireDatabase,
-    private auth: AuthService
   ) {
   }
 
@@ -73,10 +72,6 @@ export class AddorderComponent implements OnInit {
       date: [{ value: '', disabled: true}, [Validators.required]],
       notes: [''],
       items: this.initItems()
-      // cloth: ['0'],
-      // pant: ['0'],
-      // bedcloth: ['0'],
-      // blanket: ['0']
     });
     this.ManageNameControl(0);
     this.ManageNameControl(1);
@@ -170,62 +165,23 @@ export class AddorderComponent implements OnInit {
           orderList.unshift({
             [controls.at(i).value.name.name]: controls.at(i).value.count
           });
-          // this.orderList = {
-          //   [controls.at(i).value.name.name]: controls.at(i).value.count
-          // };
         }
-        const id = this.orderDetail.push({
+        this.orderDetail.push({
           rfidNum: tagNum,
           email: key.email,
           mobile: mobile,
           price: price,
           status: 'inprogress',
-          // detail: orderList,
+          detail: orderList,
           timestamp: timestamp,
           remark: ''
-        }).key;
-        this.orderDetail.update(id, {detail: orderList});
+        });
+        // this.orderDetail.update(id, {detail: orderList});
       this.showSuccessMessage = true;
       setTimeout( () => this.showSuccessMessage = false, 5000);
       this.submitted = false;
-      // this.cusRegisForm.reset();
         window.location.reload();
-        // for (let i = 0; i < controls.length; i++) {
-
-        //   price = price + controls.at(i).value.name.price * controls.at(i).value.count;
-
-        //   const temp = this.orderDetail.snapshotChanges().subscribe(
-        //     act => act.forEach( key2 => {
-        //       this.orderDetail.update(key2.key, {
-        //         price: price
-        //       });
-        //       this.detail = this.db.list('OrderDetail/' + year + '/' + month + '/' + day + '/' + key2.key + '/detail');
-        //       this.detail.push({
-        //         detail: {
-        //           [controls.at(i).value.name.name]: controls.at(i).value.count
-        //         }
-        //       });
-        //       // if ( key2.payload.val().mobile === mobile ) {
-        //       // }
-        //     }
-        //       )
-        //   );
-        //   // temp.unsubscribe();
-        //   // this.detail.controls.at(i).value.name.name = controls.at(i).value.count;
-        //   // this.detail = Object.assign(tempObj, this.detail);
-        //   // console.log(this.detail);
-        //   // console.log(controls.at(i).value.count);
-        //   // console.log(controls.at(i).value.name.price);
-
-        //   console.log(price);
-        // }
     }));
-    // this.detail = this.db.object('OrderDetail/' + year + '/' + month + '/' + day);
-    // this.showSuccessMessage = true;
-    // setTimeout( () => this.showSuccessMessage = false, 3000);
-    // this.firstStep.reset();
-    // this.secondStep.reset();
-    // this.thirdStep.reset();
     console.log('Map order success.');
   }
 }
