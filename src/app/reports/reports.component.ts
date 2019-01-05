@@ -12,6 +12,7 @@ export interface PeriodicElement {
   mobile: string;
   price: string;
   id: string;
+  remark: string;
 }
 export interface DialogData {
   id: string;
@@ -43,14 +44,15 @@ export class ReportsComponent implements OnInit {
   dataSource: any;
   selectedProc: string;
 
-  displayedColumns: string[] = ['date', 'status', 'email', 'mobile', 'price'];
+  displayedColumns: string[] = ['date', 'status', 'email', 'mobile', 'price', 'remark'];
 
   jsonObj = {
     date: '',
     status: '',
     email: '',
     mobile: '',
-    price: ''
+    price: '',
+    remark: ''
   };
 
   // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
@@ -110,14 +112,16 @@ export class ReportsComponent implements OnInit {
                         // console.log('WRITE status - '+this.jsonObj);
                         // console.log('status = '+this.jsonObj.position);
                         console.log('position ==: ' + this.jsonObj.date + ' | email: ' + this.jsonObj.email +
-                        ' | mobile: ' + this.jsonObj.mobile + ' | price: ' + this.jsonObj.price + ' | id: ' + orderListKey);
+                        ' | mobile: ' + this.jsonObj.mobile + ' | remark: ' + this.jsonObj.remark + ' | price: ' + this.jsonObj.price +
+                        ' | id: ' + orderListKey);
                         ELEMENT_DATA.unshift({
                           date: this.jsonObj.date,
                           status: this.jsonObj.status,
                           email: this.jsonObj.email,
                           mobile: this.jsonObj.mobile,
                           price: this.jsonObj.price,
-                          id: orderListKey
+                          id: orderListKey,
+                          remark: this.jsonObj.remark
                         });
                       } else if (snapKey === 'status') {
                         this.jsonObj.status = '' + snapVal;
@@ -135,6 +139,8 @@ export class ReportsComponent implements OnInit {
                         this.jsonObj.price = '' + snapVal;
                         // console.log('WRITE price - '+this.jsonObj);
                         // console.log('price = '+this.jsonObj.price);
+                      } else if ( snapKey === 'remark') {
+                        this.jsonObj.remark = '' + snapVal;
                       }
 
                       this.dataSource = new MatTableDataSource(ELEMENT_DATA);
