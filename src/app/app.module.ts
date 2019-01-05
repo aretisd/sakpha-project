@@ -30,10 +30,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { NavtabsComponent } from './navigation/navtabs/navtabs.component';
 import { AddorderComponent } from './shop/addorder/addorder.component';
 import { UpdateComponent } from './shop/update/update.component';
-import { SettingComponent } from './shop/setting/setting.component';
-import { BuypackageComponent } from './shop/buypackage/buypackage.component';
 import { SendEmailComponent } from './send-email/send-email.component';
-import { AdminComponent } from './admin/admin.component';
 import { ReportsComponent } from './reports/reports.component';
 import { DialogComponent } from './reports/dialog/dialog.component';
 
@@ -51,10 +48,7 @@ import { DialogComponent } from './reports/dialog/dialog.component';
     NavtabsComponent,
     AddorderComponent,
     UpdateComponent,
-    SettingComponent,
-    BuypackageComponent,
     SendEmailComponent,
-    AdminComponent,
     ReportsComponent,
     DialogComponent
   ],
