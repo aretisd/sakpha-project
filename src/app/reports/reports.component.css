@@ -97,6 +97,19 @@ button {
   background-color: rgb(255, 255, 255);
 }
 
+/*  Remark column  */
+.remark-ready{
+  background-color: #24e063;
+}
+
+.remark-inprogress{
+  background-color: #ebf8af;
+}
+
+.remark-complete{
+  background-color: rgb(255, 255, 255);
+}
+
 
 /*  ID column  */
 .id-ready{
