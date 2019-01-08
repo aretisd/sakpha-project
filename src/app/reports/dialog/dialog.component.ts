@@ -2,11 +2,16 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ReportsComponent } from '../reports.component';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs';
 
 export interface DialogData {
   id: string;
   status: string;
   date: string;
+  price: number;
+  remark: string;
+  detailName: string;
+  detailCount: string;
 }
 export interface Process {
   process: string;

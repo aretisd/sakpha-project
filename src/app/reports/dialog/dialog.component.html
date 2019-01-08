@@ -1,9 +1,21 @@
 <h1 mat-dialog-title>Update order's status of {{data.id}}</h1>
 <div mat-dialog-content>
-  <!-- <p>What's your favorite animal?</p> -->
-  <!-- <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field> -->
+ 
+  <h5>Order's Detail</h5>
+  <p>Price: {{data.price}}</p>
+  <p>Remark: {{data.remark}}</p>
+  <p>Detail: </p>
+  <table class="orderTable">
+    <tr>
+      <th>สินค้า</th>
+      <td *ngFor="let name of data.detailName | keyvalue">{{name.value}}</td>
+    </tr>
+    <tr>
+      <th>จำนวน</th>
+      <td *ngFor="let count of data.detailCount | keyvalue" >{{count.value}}</td>
+    </tr>
+  </table>
+  
   <mat-form-field>
     <mat-select placeholder="Process" name="process" [(ngModel)]="selectedProc">
       <mat-option *ngFor="let process of processes" [value]="process.process">
@@ -13,6 +25,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="update(data.id, selectedProc)">Update</button>
-  <button mat-button mat-dialog-close>Clear</button>
+  <button mat-button (click)="update(data.id, selectedProc)">Confirm</button>
+  <button mat-button mat-dialog-close>Cancel</button>
 </div>
